@@ -89,12 +89,11 @@ export default function Conteudo() {
     }
 
     const remover = async (id) => {
-        const r = await api.removerMensagem(id);
-        if (!validarResposta(r)) 
-            return;
-        
-        toast.dark('💕 Mensagem removida!');
-        await carregarMensagens();
+      const r= await api.removerMensagem(id);
+      if(!validarResposta(r))
+      return;
+      toast.dark('💕 Mensagem removida com sucesso!');
+      await carregarMensagens();
     }
 
     
@@ -134,7 +133,7 @@ export default function Conteudo() {
                     {chat.map(x =>
                         <div key={x.id_chat}>
                             <div className="chat-message">
-                                <div> <img onClick={() => remover(x.id_chat)}  src="/assets/images/delete.svg" alt="" style={{cursor: 'pointer'}} /> </div>
+                                <div> <img onClick={() =>remover(x.id_chat)}  src="/assets/images/delete.svg" alt="" style={{cursor: 'pointer'}} /> </div>
                                 <div>({new Date(x.dt_mensagem.replace('Z', '')).toLocaleTimeString()})</div>
                                 <div><b>{x.tb_usuario.nm_usuario}</b> fala para <b>Todos</b>:</div>
                                 <div> {x.ds_mensagem} </div>

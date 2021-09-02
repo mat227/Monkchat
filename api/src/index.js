@@ -7,12 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// teste github
-
-// alterado no frei
-
-
-
 
 app.post('/login', async (req, resp) => {
     const login = req.body.login;
@@ -153,7 +147,7 @@ app.get('/chat/:sala', async (req, resp) => {
 
 app.delete('/chat/:id', async (req, resp) => {
     try {
-        let r = await db.tb_chat.destroy({ where: { id_chat: req.params.id } })
+        let r = await db.tb_chat.destroy({ where:{id_chat:req.params.id}});
         resp.sendStatus(200);
     } catch (e) {
         resp.send({ erro: e.toString() });
